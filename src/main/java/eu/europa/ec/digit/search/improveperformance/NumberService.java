@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -40,8 +41,10 @@ public class NumberService {
     }
 
     public Integer findSmallestDuplicateImproved(List<Integer> data) {
-        
-        throw new UnsupportedOperationException("Not implemented.");
+        HashSet<Integer> uniqueItems = new HashSet<>();
+        List<Integer> duplicates = data.stream()
+                .filter(n -> !uniqueItems.add(n)).collect(toList());
+        return duplicates.stream().sorted().findFirst().orElse(null);
 
     }
 
